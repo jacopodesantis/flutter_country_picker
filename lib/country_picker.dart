@@ -1,6 +1,6 @@
 library country_picker;
 
-import 'package:country_picker/src/res/flag_to_replace.dart';
+import 'package:country_picker/src/flag_to_replace.dart';
 import 'package:flutter/material.dart';
 
 import 'src/country.dart';
@@ -14,6 +14,7 @@ export 'src/country_list_view.dart' show CustomFlagBuilder;
 export 'src/country_localizations.dart';
 export 'src/country_parser.dart';
 export 'src/country_service.dart';
+export 'src/flag_to_replace.dart' show FlagToReplace;
 
 /// Shows a bottom sheet containing a list of countries to select one.
 ///

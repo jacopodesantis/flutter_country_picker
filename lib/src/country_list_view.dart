@@ -1,5 +1,5 @@
 import 'package:collection/collection.dart';
-import 'package:country_picker/src/res/flag_to_replace.dart';
+import 'package:country_picker/src/flag_to_replace.dart';
 import 'package:flutter/material.dart';
 
 import 'country.dart';
