@@ -1,40 +1,8 @@
 import 'package:country_picker/country_picker.dart';
-import 'package:country_picker/src/res/strings/he.dart';
 import 'package:flutter/material.dart';
 
 import 'res/country_codes.dart';
-import 'res/strings/ar.dart';
-import 'res/strings/bg.dart';
-import 'res/strings/ca.dart';
-import 'res/strings/cn.dart';
-import 'res/strings/cs.dart';
-import 'res/strings/de.dart';
 import 'res/strings/en.dart';
-import 'res/strings/es.dart';
-import 'res/strings/et.dart';
-import 'res/strings/fr.dart';
-import 'res/strings/gr.dart';
-import 'res/strings/hr.dart';
-import 'res/strings/ht.dart';
-import 'res/strings/id.dart';
-import 'res/strings/it.dart';
-import 'res/strings/ja.dart';
-import 'res/strings/ko.dart';
-import 'res/strings/ku.dart';
-import 'res/strings/lt.dart';
-import 'res/strings/lv.dart';
-import 'res/strings/nb.dart';
-import 'res/strings/nl.dart';
-import 'res/strings/nn.dart';
-import 'res/strings/np.dart';
-import 'res/strings/pl.dart';
-import 'res/strings/pt.dart';
-import 'res/strings/ro.dart';
-import 'res/strings/ru.dart';
-import 'res/strings/sk.dart';
-import 'res/strings/tr.dart';
-import 'res/strings/tw.dart';
-import 'res/strings/uk.dart';
 
 /// Used to parse simple string representations of countries, commonly used in
 /// databases and other forms of storage, to a Country object.
@@ -217,75 +185,6 @@ class CountryParser {
   /// Returns a translation for the given [locale]. Defaults to english.
   static Map<String, String> _getTranslation(Locale locale) {
     switch (locale.languageCode) {
-      case 'zh':
-        switch (locale.scriptCode) {
-          case 'Hant':
-            return tw;
-          case 'Hans':
-          default:
-            return cn;
-        }
-      case 'el':
-        return gr;
-      case 'ar':
-        return ar;
-      case 'bg':
-        return bg;
-      case 'ku':
-        return ku;
-      case 'es':
-        return es;
-      case 'et':
-        return et;
-      case 'pt':
-        return pt;
-      case 'nb':
-        return nb;
-      case 'nn':
-        return nn;
-      case 'uk':
-        return uk;
-      case 'pl':
-        return pl;
-      case 'tr':
-        return tr;
-      case 'hr':
-        return hr;
-      case 'ht':
-        return ht;
-      case 'ro':
-        return ro;
-      case 'ru':
-        return ru;
-      case 'sk':
-        return sk;
-      case 'hi':
-      case 'ne':
-        return np;
-      case 'fr':
-        return fr;
-      case 'de':
-        return de;
-      case 'lv':
-        return lv;
-      case 'lt':
-        return lt;
-      case 'nl':
-        return nl;
-      case 'it':
-        return it;
-      case 'ja':
-        return ja;
-      case 'id':
-        return id;
-      case 'ko':
-        return ko;
-      case 'cs':
-        return cs;
-      case 'ca':
-        return ca;
-      case 'he':
-        return he;
       case 'en':
       default:
         return en;
