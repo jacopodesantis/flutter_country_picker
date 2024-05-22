@@ -16,9 +16,8 @@ dependencies:
     sdk: flutter
 
 flutter:
-
-  assets: 
-    - assets/chinese_taipei.png
+  assets:
+    - assets/taipei.png
 
 dev_dependencies:
   flutter_test:

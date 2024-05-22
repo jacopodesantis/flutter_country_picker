@@ -239,8 +239,9 @@ class _CountryListViewState extends State<CountryListView> {
       width: isRtl ? 50 : null,
       child: country.countryCode.toUpperCase() == "TW"
           ? Image.asset(
-              'assets/chinese_taipei.png',
+              'assets/taipei.png',
               width: 25,
+              height: 25,
             )
           : _emojiText(country),
     );
