@@ -15,10 +15,6 @@ dependencies:
   flutter:
     sdk: flutter
 
-flutter:
-  assets:
-    - assets/taipei.png
-
 dev_dependencies:
   flutter_test:
     sdk: flutter

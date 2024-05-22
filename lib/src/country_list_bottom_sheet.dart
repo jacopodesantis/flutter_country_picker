@@ -1,3 +1,4 @@
+import 'package:country_picker/src/res/flag_to_replace.dart';
 import 'package:flutter/material.dart';
 
 import 'country.dart';
@@ -14,6 +15,7 @@ void showCountryListBottomSheet({
   bool showPhoneCode = false,
   CustomFlagBuilder? customFlagBuilder,
   CountryListThemeData? countryListTheme,
+  List<FlagToReplace>? flagsToReplace,
   bool searchAutofocus = false,
   bool showWorldWide = false,
   bool showSearch = true,
@@ -35,6 +37,7 @@ void showCountryListBottomSheet({
       countryFilter,
       showPhoneCode,
       countryListTheme,
+      flagsToReplace,
       searchAutofocus,
       showWorldWide,
       showSearch,
@@ -54,6 +57,7 @@ Widget _builder(
   List<String>? countryFilter,
   bool showPhoneCode,
   CountryListThemeData? countryListTheme,
+  List<FlagToReplace>? flagsToReplace,
   bool searchAutofocus,
   bool showWorldWide,
   bool showSearch,
@@ -62,10 +66,12 @@ Widget _builder(
 ) {
   final device = MediaQuery.of(context).size.height;
   final statusBarHeight = MediaQuery.of(context).padding.top;
-  final height = countryListTheme?.bottomSheetHeight ?? device - (statusBarHeight + (kToolbarHeight / 1.5));
+  final height = countryListTheme?.bottomSheetHeight ??
+      device - (statusBarHeight + (kToolbarHeight / 1.5));
   final width = countryListTheme?.bottomSheetWidth;
 
-  Color? _backgroundColor = countryListTheme?.backgroundColor ?? Theme.of(context).bottomSheetTheme.backgroundColor;
+  Color? _backgroundColor = countryListTheme?.backgroundColor ??
+      Theme.of(context).bottomSheetTheme.backgroundColor;
 
   if (_backgroundColor == null) {
     if (Theme.of(context).brightness == Brightness.light) {
@@ -82,7 +88,9 @@ Widget _builder(
       );
 
   return Padding(
-    padding: moveAlongWithKeyboard ? MediaQuery.of(context).viewInsets : EdgeInsets.zero,
+    padding: moveAlongWithKeyboard
+        ? MediaQuery.of(context).viewInsets
+        : EdgeInsets.zero,
     child: Container(
       height: height,
       width: width,
@@ -99,6 +107,7 @@ Widget _builder(
         countryFilter: countryFilter,
         showPhoneCode: showPhoneCode,
         countryListTheme: countryListTheme,
+        flagsToReplace: flagsToReplace,
         searchAutofocus: searchAutofocus,
         showWorldWide: showWorldWide,
         showSearch: showSearch,
