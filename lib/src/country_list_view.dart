@@ -257,8 +257,8 @@ class _CountryListViewState extends State<CountryListView> {
       // the conditional 50 prevents irregularities caused by the flags in RTL mode
       width: isRtl ? 50 : null,
       child: flagToReplace != null
-          ? Image.asset(
-              flagToReplace.asset,
+          ? Image(
+              image: flagToReplace.image,
               width: 25,
               height: 25,
             )
