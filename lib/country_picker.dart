@@ -1,12 +1,12 @@
 library country_picker;
 
-import 'package:country_picker/src/flag_to_replace.dart';
 import 'package:flutter/material.dart';
 
 import 'src/country.dart';
 import 'src/country_list_bottom_sheet.dart';
 import 'src/country_list_theme_data.dart';
 import 'src/country_list_view.dart';
+import 'src/flag_to_replace.dart';
 
 export 'src/country.dart';
 export 'src/country_list_theme_data.dart';
