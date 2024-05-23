@@ -1,3 +1,5 @@
+import 'package:collection/collection.dart';
+import 'package:country_picker/src/flag_to_replace.dart';
 import 'package:flutter/material.dart';
 
 import 'country.dart';
@@ -45,6 +47,8 @@ class CountryListView extends StatefulWidget {
   /// An optional argument for hiding the search bar
   final bool showSearch;
 
+  final List<FlagToReplace>? flagsToReplace;
+
   /// Custom builder function for flag widget
   final CustomFlagBuilder? customFlagBuilder;
 
@@ -56,6 +60,7 @@ class CountryListView extends StatefulWidget {
     this.countryFilter,
     this.showPhoneCode = false,
     this.countryListTheme,
+    this.flagsToReplace,
     this.searchAutofocus = false,
     this.showWorldWide = false,
     this.showSearch = true,
@@ -156,7 +161,8 @@ class _CountryListViewState extends State<CountryListView> {
             children: [
               if (_favoriteList != null) ...[
                 ..._favoriteList!
-                    .map<Widget>((currency) => _listRow(currency))
+                    .map<Widget>(
+                        (currency) => _listRow(currency, widget.flagsToReplace))
                     .toList(),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -164,7 +170,8 @@ class _CountryListViewState extends State<CountryListView> {
                 ),
               ],
               ..._filteredList
-                  .map<Widget>((country) => _listRow(country))
+                  .map<Widget>(
+                      (country) => _listRow(country, widget.flagsToReplace))
                   .toList(),
             ],
           ),
@@ -173,7 +180,7 @@ class _CountryListViewState extends State<CountryListView> {
     );
   }
 
-  Widget _listRow(Country country) {
+  Widget _listRow(Country country, List<FlagToReplace>? flagsToReplace) {
     final TextStyle _textStyle =
         widget.countryListTheme?.textStyle ?? _defaultTextStyle;
 
@@ -199,7 +206,7 @@ class _CountryListViewState extends State<CountryListView> {
                 children: [
                   const SizedBox(width: 20),
                   if (widget.customFlagBuilder == null)
-                    _flagWidget(country)
+                    _flagWidget(country, flagsToReplace)
                   else
                     widget.customFlagBuilder!(country),
                   if (widget.showPhoneCode && !country.iswWorldWide) ...[
@@ -232,14 +239,26 @@ class _CountryListViewState extends State<CountryListView> {
     );
   }
 
-  Widget _flagWidget(Country country) {
+  FlagToReplace? _getFlagToReplaceOrNull(
+      String countryCode, List<FlagToReplace>? flagsToReplace) {
+    if (flagsToReplace == null || flagsToReplace.isEmpty) {
+      return null;
+    }
+    return flagsToReplace.firstWhereOrNull((element) =>
+        element.countryCode.toUpperCase() == countryCode.toUpperCase());
+  }
+
+  Widget _flagWidget(Country country, List<FlagToReplace>? flagsToReplace) {
+    final flagToReplace =
+        _getFlagToReplaceOrNull(country.countryCode, flagsToReplace);
+
     final bool isRtl = Directionality.of(context) == TextDirection.rtl;
     return SizedBox(
       // the conditional 50 prevents irregularities caused by the flags in RTL mode
       width: isRtl ? 50 : null,
-      child: country.countryCode.toUpperCase() == "TW"
+      child: flagToReplace != null
           ? Image.asset(
-              'assets/taipei.png',
+              flagToReplace.asset,
               width: 25,
               height: 25,
             )
