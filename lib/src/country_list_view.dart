@@ -1,11 +1,9 @@
-import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 
 import 'country.dart';
 import 'country_list_theme_data.dart';
 import 'country_localizations.dart';
 import 'country_service.dart';
-import 'flag_to_replace.dart';
 import 'res/country_codes.dart';
 import 'utils.dart';
 
@@ -47,7 +45,7 @@ class CountryListView extends StatefulWidget {
   /// An optional argument for hiding the search bar
   final bool showSearch;
 
-  final List<FlagToReplace>? flagsToReplace;
+  final Map<String, AssetImage>? flagsToReplace;
 
   /// Custom builder function for flag widget
   final CustomFlagBuilder? customFlagBuilder;
@@ -180,7 +178,7 @@ class _CountryListViewState extends State<CountryListView> {
     );
   }
 
-  Widget _listRow(Country country, List<FlagToReplace>? flagsToReplace) {
+  Widget _listRow(Country country, Map<String, AssetImage>? flagsToReplace) {
     final TextStyle _textStyle =
         widget.countryListTheme?.textStyle ?? _defaultTextStyle;
 
@@ -239,16 +237,17 @@ class _CountryListViewState extends State<CountryListView> {
     );
   }
 
-  FlagToReplace? _getFlagToReplaceOrNull(
-      String countryCode, List<FlagToReplace>? flagsToReplace) {
-    if (flagsToReplace == null || flagsToReplace.isEmpty) {
+  AssetImage? _getFlagToReplaceOrNull(
+      String countryCode, Map<String, AssetImage>? flagsToReplace) {
+    if (flagsToReplace == null ||
+        flagsToReplace.isEmpty ||
+        flagsToReplace[countryCode] == null) {
       return null;
     }
-    return flagsToReplace.firstWhereOrNull((element) =>
-        element.countryCode.toUpperCase() == countryCode.toUpperCase());
+    return flagsToReplace[countryCode];
   }
 
-  Widget _flagWidget(Country country, List<FlagToReplace>? flagsToReplace) {
+  Widget _flagWidget(Country country, Map<String, AssetImage>? flagsToReplace) {
     final flagToReplace =
         _getFlagToReplaceOrNull(country.countryCode, flagsToReplace);
 
@@ -258,7 +257,7 @@ class _CountryListViewState extends State<CountryListView> {
       width: isRtl ? 50 : null,
       child: flagToReplace != null
           ? Image(
-              image: flagToReplace.image,
+              image: flagToReplace,
               width: 25,
               height: 25,
             )

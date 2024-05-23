@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'country.dart';
 import 'country_list_theme_data.dart';
 import 'country_list_view.dart';
-import 'flag_to_replace.dart';
 
 void showCountryListBottomSheet({
   required BuildContext context,
@@ -15,7 +14,7 @@ void showCountryListBottomSheet({
   bool showPhoneCode = false,
   CustomFlagBuilder? customFlagBuilder,
   CountryListThemeData? countryListTheme,
-  List<FlagToReplace>? flagsToReplace,
+  Map<String, AssetImage>? flagsToReplace,
   bool searchAutofocus = false,
   bool showWorldWide = false,
   bool showSearch = true,
@@ -57,7 +56,7 @@ Widget _builder(
   List<String>? countryFilter,
   bool showPhoneCode,
   CountryListThemeData? countryListTheme,
-  List<FlagToReplace>? flagsToReplace,
+  Map<String, AssetImage>? flagsToReplace,
   bool searchAutofocus,
   bool showWorldWide,
   bool showSearch,
