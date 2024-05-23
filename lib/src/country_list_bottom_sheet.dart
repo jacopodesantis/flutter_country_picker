@@ -1,9 +1,9 @@
-import 'package:country_picker/src/res/flag_to_replace.dart';
 import 'package:flutter/material.dart';
 
 import 'country.dart';
 import 'country_list_theme_data.dart';
 import 'country_list_view.dart';
+import 'flag_to_replace.dart';
 
 void showCountryListBottomSheet({
   required BuildContext context,
