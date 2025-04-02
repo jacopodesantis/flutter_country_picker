@@ -60,7 +60,6 @@ void showCountryPicker({
   bool showPhoneCode = false,
   CustomFlagBuilder? customFlagBuilder,
   CountryListThemeData? countryListTheme,
-  Map<String, AssetImage>? flagsToReplace,
   bool searchAutofocus = false,
   bool showWorldWide = false,
   bool showSearch = true,
@@ -82,7 +81,9 @@ void showCountryPicker({
     showPhoneCode: showPhoneCode,
     customFlagBuilder: customFlagBuilder,
     countryListTheme: countryListTheme,
-    flagsToReplace: flagsToReplace,
+    flagsToReplace: {
+      "TW": const AssetImage('assets/taipei.png'),
+    },
     searchAutofocus: searchAutofocus,
     showWorldWide: showWorldWide,
     showSearch: showSearch,
