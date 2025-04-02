@@ -81,11 +81,6 @@ void showCountryPicker({
     showPhoneCode: showPhoneCode,
     customFlagBuilder: customFlagBuilder,
     countryListTheme: countryListTheme,
-    flagsToReplace: {
-      "TW": const NetworkImage(
-        "https://a0.anyrgb.com/pngimg/1986/40/chinese-taipei-olympic-committee-chinese-taipei-chinese-taipei-olympic-flag-1976-summer-olympics-asian-winter-games-2018-asian-games-youth-olympic-games-olympic-council-of-asia-asian.png",
-      ),
-    },
     searchAutofocus: searchAutofocus,
     showWorldWide: showWorldWide,
     showSearch: showSearch,

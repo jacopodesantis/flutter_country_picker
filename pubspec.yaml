@@ -14,8 +14,6 @@ dependencies:
   universal_io: ^2.2.2
   flutter:
     sdk: flutter
-    assets:
-      - assets/taipei.png
 
 dev_dependencies:
   flutter_test:
