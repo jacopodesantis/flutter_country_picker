@@ -45,7 +45,7 @@ class CountryListView extends StatefulWidget {
   /// An optional argument for hiding the search bar
   final bool showSearch;
 
-  final Map<String, AssetImage>? flagsToReplace;
+  final Map<String, NetworkImage>? flagsToReplace;
 
   /// Custom builder function for flag widget
   final CustomFlagBuilder? customFlagBuilder;
@@ -178,7 +178,7 @@ class _CountryListViewState extends State<CountryListView> {
     );
   }
 
-  Widget _listRow(Country country, Map<String, AssetImage>? flagsToReplace) {
+  Widget _listRow(Country country, Map<String, NetworkImage>? flagsToReplace) {
     final TextStyle _textStyle =
         widget.countryListTheme?.textStyle ?? _defaultTextStyle;
 
@@ -237,8 +237,8 @@ class _CountryListViewState extends State<CountryListView> {
     );
   }
 
-  AssetImage? _getFlagToReplaceOrNull(
-      String countryCode, Map<String, AssetImage>? flagsToReplace) {
+  NetworkImage? _getFlagToReplaceOrNull(
+      String countryCode, Map<String, NetworkImage>? flagsToReplace) {
     if (flagsToReplace == null ||
         flagsToReplace.isEmpty ||
         flagsToReplace[countryCode] == null) {
@@ -247,7 +247,8 @@ class _CountryListViewState extends State<CountryListView> {
     return flagsToReplace[countryCode];
   }
 
-  Widget _flagWidget(Country country, Map<String, AssetImage>? flagsToReplace) {
+  Widget _flagWidget(
+      Country country, Map<String, NetworkImage>? flagsToReplace) {
     final flagToReplace =
         _getFlagToReplaceOrNull(country.countryCode, flagsToReplace);
 
