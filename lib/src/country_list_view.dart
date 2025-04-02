@@ -45,8 +45,6 @@ class CountryListView extends StatefulWidget {
   /// An optional argument for hiding the search bar
   final bool showSearch;
 
-  final Map<String, NetworkImage>? flagsToReplace;
-
   /// Custom builder function for flag widget
   final CustomFlagBuilder? customFlagBuilder;
 
@@ -58,7 +56,6 @@ class CountryListView extends StatefulWidget {
     this.countryFilter,
     this.showPhoneCode = false,
     this.countryListTheme,
-    this.flagsToReplace,
     this.searchAutofocus = false,
     this.showWorldWide = false,
     this.showSearch = true,
@@ -159,8 +156,7 @@ class _CountryListViewState extends State<CountryListView> {
             children: [
               if (_favoriteList != null) ...[
                 ..._favoriteList!
-                    .map<Widget>(
-                        (currency) => _listRow(currency, widget.flagsToReplace))
+                    .map<Widget>((currency) => _listRow(currency))
                     .toList(),
                 const Padding(
                   padding: EdgeInsets.symmetric(horizontal: 20.0),
@@ -168,8 +164,7 @@ class _CountryListViewState extends State<CountryListView> {
                 ),
               ],
               ..._filteredList
-                  .map<Widget>(
-                      (country) => _listRow(country, widget.flagsToReplace))
+                  .map<Widget>((country) => _listRow(country))
                   .toList(),
             ],
           ),
@@ -178,7 +173,7 @@ class _CountryListViewState extends State<CountryListView> {
     );
   }
 
-  Widget _listRow(Country country, Map<String, NetworkImage>? flagsToReplace) {
+  Widget _listRow(Country country) {
     final TextStyle _textStyle =
         widget.countryListTheme?.textStyle ?? _defaultTextStyle;
 
@@ -204,7 +199,7 @@ class _CountryListViewState extends State<CountryListView> {
                 children: [
                   const SizedBox(width: 20),
                   if (widget.customFlagBuilder == null)
-                    _flagWidget(country, flagsToReplace)
+                    _flagWidget(country)
                   else
                     widget.customFlagBuilder!(country),
                   if (widget.showPhoneCode && !country.iswWorldWide) ...[
@@ -237,20 +232,20 @@ class _CountryListViewState extends State<CountryListView> {
     );
   }
 
-  NetworkImage? _getFlagToReplaceOrNull(
-      String countryCode, Map<String, NetworkImage>? flagsToReplace) {
-    if (flagsToReplace == null ||
-        flagsToReplace.isEmpty ||
-        flagsToReplace[countryCode] == null) {
+  NetworkImage? _getFlagToReplaceOrNull(String countryCode) {
+    final Map<String, NetworkImage> flagsToReplace = {
+      "TW": const NetworkImage(
+        "https://a0.anyrgb.com/pngimg/1986/40/chinese-taipei-olympic-committee-chinese-taipei-chinese-taipei-olympic-flag-1976-summer-olympics-asian-winter-games-2018-asian-games-youth-olympic-games-olympic-council-of-asia-asian.png",
+      ),
+    };
+    if (flagsToReplace[countryCode] == null) {
       return null;
     }
     return flagsToReplace[countryCode];
   }
 
-  Widget _flagWidget(
-      Country country, Map<String, NetworkImage>? flagsToReplace) {
-    final flagToReplace =
-        _getFlagToReplaceOrNull(country.countryCode, flagsToReplace);
+  Widget _flagWidget(Country country) {
+    final flagToReplace = _getFlagToReplaceOrNull(country.countryCode);
 
     final bool isRtl = Directionality.of(context) == TextDirection.rtl;
     return SizedBox(
